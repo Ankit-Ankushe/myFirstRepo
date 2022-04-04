@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mybox{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 10px;
+            margin: auto;
+        }
+        #mybox>div{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        #mybox>div>p{
+            color: green;
+        }
+        #mybox>div>h1{
+            color: rgb(20, 57, 178);
+        }
+         body>h1{
+            color: navy;
+        }
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+        <h1>EXPENSE TRACKER</h1>
+    <form id="data">
+       Select Month: <br> <select id="month">
+           <option value="January">January</option>
+           <option value="February">February</option>
+           <option value="March">March</option>
+           <option value="April">April</option>
+           <option value="May">May</option>
+           <option value="June">June</option>
+           <option value="July">July</option>
+           <option value="August">August</option>
+           <option value="September">September</option>
+           <option value="october">october</option>
+           <option value="November">November</option>
+           <option value="December">December</option>
+       </select> <br>
+       Income: <br><input type="number" id="sal"><br>
+       Expense: <br><input type="number" id="exp"><br>
+    <input type="submit">
+    </form>
+
+    <div id="mybox">
+    </div>
+</body>
+<script>
+    document.querySelector("#data").addEventListener("submit" , dispFunc);
+    function dispFunc(){
+        event.preventDefault();
+        // value
+        var month=document.getElementById("month").value;
+        var sal=document.getElementById("sal").value;
+        var exp=document.getElementById("exp").value;
+        var sav=sal-exp;
+
+        var box=document.createElement("div" );  //div box
+        var heading=document.createElement("h1")
+        heading.append(month);
+        var dSal=document.createElement("p")
+        dSal.append("Your income is :  RS"+sal);
+        var dExp=document.createElement("p");
+        dExp.append("Your expense is :  RS"+exp);
+        var dSav=document.createElement("p");
+        dSav.append("Your saving is :  RS"+sav);
+       
+        
+
+
+        // append in box
+        box.append(heading , dSal , dExp, dSav )
+        document.querySelector("body>div").append(box);
+    }
+</script>
+</html>
